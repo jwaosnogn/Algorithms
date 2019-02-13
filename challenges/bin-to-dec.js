@@ -20,7 +20,19 @@
  */
 
 function binToDec(binary) {
-
+  let num = 0;
+  const reverse = binary.split('').reverse().join('');
+  console.log(reverse);
+  for (let i = 0; i < reverse.length; i += 1) {
+    if (i === 0 && Number(reverse[i]) === 1) {
+      num += 1;
+    } else if (Number(reverse[i]) === 1) {
+      num += (2 ** i);
+    } else if (Number(reverse[i] !== 0)) {
+      return 'Not binary';
+    }
+  }
+  return num;
 }
 
 module.exports = binToDec;

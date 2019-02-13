@@ -31,7 +31,35 @@ function Node(val) {
 }
 
 function addLinkedList(l1, l2) {
-
+  let current1 = l1;
+  let current2 = l2;
+  const values = [];
+  while (current1 || current2) {
+    if (!current1) {
+      current1 = new Node(0);
+    }
+    if (!current2) {
+      current2 = new Node(0);
+    }
+    values.push(current1.value + current2.value);
+    current1 = current1.next;
+    current2 = current2.next;
+  }
+  for (let i = 0; i < values.length; i += 1) {
+    if (values[i] >= 10) {
+      values[i] -= 10;
+      if (values[i + 1]) {
+        values[i + 1] += 1;
+      } else {
+        values[i + 1] = 1;
+      }
+    }
+    values[i] = new Node(values[i]);
+  }
+  for (let i = 0; i < values.length - 1; i += 1) {
+    values[i].next = values[i + 1];
+  }
+  return values[0];
 }
 
 module.exports = {Node: Node, addLinkedList: addLinkedList};

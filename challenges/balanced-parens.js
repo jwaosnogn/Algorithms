@@ -31,8 +31,20 @@
  */
 
 
-function balancedParens(input){
-
+function balancedParens(input) {
+  const map = { ')': '(', '}': '{', ']': '[' };
+  const history = [];
+  for (let i = 0; i < input.length; i += 1) {
+    if (Object.values(map).includes(input[i])) {
+      history.push(input[i]);
+    }
+    if (Object.keys(map).includes(input[i])) {
+      if (map[input[i]] === history[history.length - 1]) {
+        history.pop();
+      } else return false;
+    }
+  }
+  return history.length === 0;
 }
 
 module.exports = balancedParens;

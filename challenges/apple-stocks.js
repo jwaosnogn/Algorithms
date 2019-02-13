@@ -19,7 +19,15 @@
  */
 
 function bestProfit(stock_prices_yesterday) {
-
+  let maxProfit = 0;
+  let minInd = 0;
+  for (let i = 0; i < stock_prices_yesterday.length; i += 1) {
+    if (stock_prices_yesterday[i] < stock_prices_yesterday[minInd]) {
+      minInd = i;
+    }
+    maxProfit = Math.max(maxProfit, stock_prices_yesterday[i] - stock_prices_yesterday[minInd]);
+  }
+  return maxProfit;
 }
 
 module.exports = bestProfit;
